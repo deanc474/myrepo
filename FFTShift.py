@@ -16,17 +16,12 @@ def FFTShift(x,y,s):
     phase = np.exp(2*np.pi*m*1j*s)
     
     #Compute Shifted y data
-    y2 = np.fft.ifft(fty*phase)
+    Y = np.fft.ifft(fty*phase)
+    step = (x[1]-x[0])
+    X = x - s*step
     
-    #Plot the figure
-    plt.figure(1)
-    plt.hold(True)
-    a=plt.plot(x,y2.real)
-    #b=plt.plot(x,y, label = 'Original')
-    plt.hold(False)
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('FFT Shift')
+    return X,Y
+    
     
     #Allows you to ensure the Standard deviation remains the same through this process
     #c=y.std()
